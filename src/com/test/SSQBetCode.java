@@ -1,6 +1,10 @@
 package com.test;
 
+import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
+
+import javax.security.auth.x500.X500Principal;
 
 public class SSQBetCode {
 
@@ -50,13 +54,22 @@ public class SSQBetCode {
 	
 	private void genRedBalls(int redNum) {
 		for(int i = 0; i < redNum; i++) {
-			redBalls[i] = random.nextInt(33) + 1;
+			int redBall = random.nextInt(33) + 1;
+			while(Arrays.asList(redBalls).contains(redBall)) {
+				redBall = random.nextInt(33) + 1;
+			}
+			redBalls[i] = redBall;
+			
 		}
 	}
 	
 	private void genBlueBalls(int blueNum) {
 		for(int i = 0; i < blueNum; i++) {
-			blueBalls[i] = random.nextInt(16) + 1;
+			int blueBall = random.nextInt(16) + 1;
+			while(Arrays.asList(blueBalls).contains(blueBall)) {
+				blueBall = random.nextInt(16) + 1;
+			}
+			blueBalls[i] = blueBall;
 		}
 	}
 	
