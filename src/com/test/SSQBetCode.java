@@ -55,7 +55,7 @@ public class SSQBetCode {
 	private void genRedBalls(int redNum) {
 		for(int i = 0; i < redNum; i++) {
 			int redBall = random.nextInt(33) + 1;
-			while(Arrays.asList(redBalls).contains(redBall)) {
+			while(ballExist(redBalls, redBall, redNum)) {
 				redBall = random.nextInt(33) + 1;
 			}
 			redBalls[i] = redBall;
@@ -66,7 +66,7 @@ public class SSQBetCode {
 	private void genBlueBalls(int blueNum) {
 		for(int i = 0; i < blueNum; i++) {
 			int blueBall = random.nextInt(16) + 1;
-			while(Arrays.asList(blueBalls).contains(blueBall)) {
+			while(ballExist(blueBalls, blueBall, blueNum)) {
 				blueBall = random.nextInt(16) + 1;
 			}
 			blueBalls[i] = blueBall;
@@ -80,5 +80,18 @@ public class SSQBetCode {
 		blueNum = random.nextInt(7) + 1;
 		genRedBalls(redNum);
 		genBlueBalls(blueNum);
+	}
+	
+	private boolean ballExist(int[] ballArray, int ball, int size) {
+		boolean exist = false;
+		for(int i = 0; i < size; i++) {
+			if (ballArray[i] == ball) {
+				exist = true;
+				break;
+			} else {
+				exist = false;
+			}
+		}
+		return exist;
 	}
 }
